@@ -1,12 +1,23 @@
-#pragma once
+
+#include <iostream>
 #include <string>
 
-class Foo
-{
-	std::string name;
-
+class Foo {
 public:
-	Foo();
-	std::string get_name();
+    int size;
+    std::string name;
+    Foo() : size(1002),name("foo") {
+    }
+    Foo(const Foo& cpy) : size(cpy.size),name(cpy.name) {
+    }
+    ~Foo() {
+        std::cout<<"drop"<<std::endl;
+    }
+#if !defined (_MSC_VER) || (_MSC_VER + 0 >= 1900)
+    Foo& operator=(const Foo&) = default;
+#endif
+    int get_size();
+
+    std::string get_name();
 };
 

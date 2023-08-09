@@ -1,11 +1,11 @@
 #include "Foo.h"
 
-Foo::Foo()
+int Foo::get_size()
 {
-    this->name = 100;
+    return this->size;
 }
 
-int Foo::get_name()
+std::string Foo::get_name()
 {
-    return name;
+    return this->name;
 }
