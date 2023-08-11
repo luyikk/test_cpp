@@ -1,32 +1,9 @@
+use cmake_foo::{CFoo, CXXString};
 use cpp::{cpp, cpp_class};
-use std::fmt::{Display, Formatter};
 
 cpp! {{
 #include "cpp/Foo.h"
-#include <string>
 }}
-
-cpp_class!(pub unsafe struct CXXString as "std::string");
-
-impl Display for CXXString {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.as_str())
-    }
-}
-
-impl CXXString {
-    pub fn as_str(&self) -> &str {
-        use std::ffi::CStr;
-        unsafe {
-            let str = cpp!([self as "std::string*"]->* const std::ffi::c_char as "const char*"{
-               return self->c_str();
-            });
-
-            let c_str: &CStr = CStr::from_ptr(str);
-            c_str.to_str().unwrap()
-        }
-    }
-}
 
 cpp_class!(pub unsafe struct Foo as "Foo");
 
@@ -53,6 +30,12 @@ impl Foo {
 fn main() {
     loop {
         let f = Foo::new();
+        println!("{}", f.get_size());
+        let name = f.get_name();
+        println!("{}", name);
+        drop(f);
+
+        let f = CFoo::new();
         println!("{}", f.get_size());
         let name = f.get_name();
         println!("{}", name);

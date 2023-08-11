@@ -1,1 +1,3 @@
 /target
+/cmake_foo/Cargo.lock
+/cmake_foo/target/
