@@ -13,9 +13,7 @@ public:
     ~Foo() {
         std::cout<<"drop"<<std::endl;
     }
-#if !defined (_MSC_VER) || (_MSC_VER + 0 >= 1900)
-    Foo& operator=(const Foo&) = default;
-#endif
+
     int get_size();
 
     std::string get_name();
