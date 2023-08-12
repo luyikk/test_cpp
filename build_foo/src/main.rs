@@ -2,7 +2,7 @@ use cmake_foo::{CFoo, CXXString};
 use cpp::{cpp, cpp_class};
 
 cpp! {{
-#include "cpp/Foo.h"
+    #include "cpp/Foo.h"
 }}
 
 cpp_class!(pub unsafe struct Foo as "Foo");
@@ -39,7 +39,13 @@ fn main() {
         println!("{}", f.get_size());
         let name = f.get_name();
         println!("{}", name);
+
+        let result=f.get_result();
+        println!("{:?}",result.data());
+
         drop(f);
+
+
     }
     // output
 

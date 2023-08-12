@@ -3,6 +3,18 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
+struct Context{
+    int index;
+    int ap;
+};
+
+struct Result{
+    std::vector<Context> data;
+};
+
+
 
 class CFoo {
 public:
@@ -19,6 +31,8 @@ public:
     int get_size();
 
     std::string get_name();
+
+    Result GetResult();
 
 };
 
