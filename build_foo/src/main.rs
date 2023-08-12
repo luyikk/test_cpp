@@ -40,12 +40,11 @@ fn main() {
         let name = f.get_name();
         println!("{}", name);
 
-        let result=f.get_result();
-        println!("{:?}",result.data());
+        let result = f.get_result();
+
+        println!("{:?}", result.data());
 
         drop(f);
-
-
     }
     // output
 

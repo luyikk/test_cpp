@@ -12,6 +12,4 @@ fn main() {
         .build("src/lib.rs");
 
     println!("cargo:rustc-link-lib=static=libfoo");
-
-
 }

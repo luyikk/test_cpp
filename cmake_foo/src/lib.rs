@@ -29,6 +29,8 @@ impl CXXString {
     }
 }
 
+cpp_class!(pub unsafe struct Data as "std::vector<Context>");
+
 cpp_class!(pub unsafe struct ResultInner as "Result");
 
 #[derive(Debug)]
@@ -67,15 +69,22 @@ impl Result {
             }
         }
     }
+
+    pub fn into_inner(self) -> Data {
+        let inner = self.inner;
+        unsafe {
+            cpp!([inner as "Result"] -> Data as "std::vector<Context>" {
+                  return inner.data;
+            })
+        }
+    }
 }
 
 cpp_class!(pub unsafe struct CFoo as "CFoo");
 
-
-
 impl CFoo {
     pub fn new() -> Self {
-       unsafe { cpp!([] -> CFoo as "CFoo" { return CFoo(); }) }
+        unsafe { cpp!([] -> CFoo as "CFoo" { return CFoo(); }) }
     }
 
     pub fn get_size(&self) -> i32 {
