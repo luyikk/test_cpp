@@ -15,8 +15,6 @@ public:
     }
 
     int get_size();
-
     std::string get_name();
-    
 };
 
