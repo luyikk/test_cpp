@@ -1,4 +1,5 @@
 fn main() {
+    println!("cargo:rerun-if-changed=libfoo");
     let dst = cmake::Config::new("libfoo")
         .profile("Release")
         .build_target("ALL_BUILD")

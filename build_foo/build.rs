@@ -1,4 +1,5 @@
 fn main() {
+    println!("cargo:rerun-if-changed=cpp");
     if cfg!(target_os = "windows") {
         cpp_build::Config::new().build("src/main.rs");
         println!("cargo:rustc-link-search=native=./build_foo/lib");
